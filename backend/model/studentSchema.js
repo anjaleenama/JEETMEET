@@ -6,7 +6,7 @@ const StudentSchema = new mongoose.Schema({
     name: { type: String, required: true },
     profile_image: { type: String, default: null },
     classes: { type: String, required: true },
-    division: { type: String, default: null },
+    division: { type: String, required: true },
     roll_number: { type: Number, required: true },
     dob: { type: Date, required: true },
     parent_id: { type: mongoose.Schema.Types.ObjectId, ref: "Parent", required: true }, 
@@ -17,7 +17,8 @@ const StudentSchema = new mongoose.Schema({
     blood_group: { type: String, default: null },
     state: { type: String, default: null },
     country: { type: String, default: null },  
-    nationality: { type: String, default: null }  
+    nationality: { type: String, default: null },
+    username: { type: String, required: true, unique: true } // Added username field
 }, { timestamps: true });
 
 module.exports = mongoose.model("Student", StudentSchema);

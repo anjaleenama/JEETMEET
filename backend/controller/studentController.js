@@ -11,18 +11,41 @@ const nodemailer = require("nodemailer");
 
 const studentController = {
     register: asyncHandler(async (req, res) => {
-        const { email, password, name, profile_image, classes, division, roll_number, dob, parent_id,secondary_phone,address,place,post_code,blood_group,state,country,natonality } = req.body;
-
-        if (!email || !password || !name || !profile_image || !classes || !division || !roll_number || !dob || !parent_id) {
+        const { 
+            email, 
+            password, 
+            name, 
+            profile_image, 
+            classes, 
+            division, 
+            roll_number, 
+            dob, 
+            parent_id, 
+            secondary_phone, 
+            address, 
+            place, 
+            post_code, 
+            blood_group, 
+            state, 
+            country, 
+            natonality, 
+            username // Add username here
+        } = req.body;
+    
+        // Check if all required fields are provided, including username
+        if (!email || !password || !name || !profile_image || !classes || !division || !roll_number || !dob || !parent_id || !username) {
             return res.status(400).json({ message: "Incomplete data" });
         }
-
+    
+        // Validate parent_id format
         if (!mongoose.Types.ObjectId.isValid(parent_id)) {
             return res.status(400).json({ message: "Invalid parent_id format" });
         }
-
+    
+        // Hash the password
         const hashedPassword = await bcrypt.hash(password, 12);
-
+    
+        // Create a new student with the provided data, including username
         const newStudent = await Student.create({
             email,
             password: hashedPassword,
@@ -33,13 +56,23 @@ const studentController = {
             roll_number,
             dob,
             parent_id: new mongoose.Types.ObjectId(parent_id),
-            secondary_phone,address,place,post_code,blood_group,state,country,natonality 
+            secondary_phone,
+            address,
+            place,
+            post_code,
+            blood_group,
+            state,
+            country,
+            natonality,
+            username // Include username here
         });
-
+    
+        // Check if the student was successfully created
         if (!newStudent) {
             return res.status(500).json({ message: "Registration failed" });
         }
-
+    
+        // Return success response with the new student data
         res.status(201).json({ message: "Registration successful", student: newStudent });
     }),
 
@@ -109,43 +142,44 @@ const studentController = {
             res.status(500).json({ message: "Failed to add notification", error: error.message });
         }
     }),
-    login: asyncHandler(async (req, res) => {
+     login : asyncHandler(async (req, res) => {
         const { username, password } = req.body;
-      
+    
         // Check if username and password are provided
         if (!username || !password) {
-          return res.status(400).json({ message: "Incomplete data" });
+            return res.status(400).json({ message: "Incomplete data" });
         }
-      
-        // Find the user by email (username)
-        const UserDetails = await Student.findOne({ email: username });
+    
+        // Find the user by username
+        const UserDetails = await Student.findOne({ username });
         if (!UserDetails) {
-          return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({ message: "User not found" });
         }
-      
-        // Compare the provided password with the hashed password
-        const hashedPassword = UserDetails.password;
-        const compare = await bcrypt.compare(password, hashedPassword);
-        if (!compare) {
-          return res.status(401).json({ message: "Invalid email or password" });
+    
+        // Compare the provided password with the stored hashed password
+        const isMatch = await bcrypt.compare(password, UserDetails.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Invalid username or password" });
         }
-      
+    
         // Create a JWT token
         const payload = {
-          username,
-          id: UserDetails._id,
+            username: UserDetails.username,
+            id: UserDetails._id
         };
-        const token = jwt.sign(payload, process.env.SECRET_KEY);
-      
+    
+        const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1d" });
+    
         // Set the token in a cookie
         res.cookie("token", token, {
-          httpOnly: true,
-          maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
-      
+    
         // Send a success response
-        res.status(200).json({ message: "Login is successful", token });
-      }),
+        res.status(200).json({ message: "Login successful", token });
+    }),
+    
     profile:asyncHandler(async(req,res)=>{
         const {id}=req.user
         console.log(req.user);
