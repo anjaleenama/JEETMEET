@@ -15,7 +15,7 @@ studentRouter.post('/teacher/add',isAuth,studentController.createTeacher)
 studentRouter.post('/teacher/show',isAuth,studentController.getTeachersByClass)
 studentRouter.post('/assignment/calender',isAuth,studentController.calender)
 studentRouter.post('/forgotPassword',studentController.forgotPassword)
-studentRouter.post('/reset-password',studentController.resetPassword)
+studentRouter.post('/reset-password/:token',studentController.resetPassword)
 
 
 

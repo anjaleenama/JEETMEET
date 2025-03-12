@@ -353,7 +353,7 @@ const studentController = {
         console.log(formattedDates);
         res.status(200).json(formattedDates);
     }) ,
-     forgotPassword :asyncHandler(async (req, res) => {
+    forgotPassword: asyncHandler(async (req, res) => {
         try {
             console.log("🔹 Forgot Password Request Received");
     
@@ -366,7 +366,7 @@ const studentController = {
             }
     
             // Find student by email
-            const user = await Student.findOne({ email }).lean(); // Use .lean() for better performance
+            const user = await Student.findOne({ email }).lean();
             if (!user) {
                 console.error(`❌ Error: No user found with email ${email}`);
                 return res.status(404).json({ error: "User not found" });
@@ -384,8 +384,8 @@ const studentController = {
                 return res.status(500).json({ error: "Failed to generate reset token" });
             }
     
-            // Construct Reset URL
-            const resetUrl = `http://localhost:5173/api/v1/student/reset-password/${resetToken}`;
+            // Construct Reset URL for Frontend (Include email as a query parameter)
+            const resetUrl = `http://localhost:5173/reset-password?token=${resetToken}&email=${email}`;
             console.log(`🔗 Reset URL: ${resetUrl}`);
     
             // Configure Nodemailer Transporter
@@ -427,59 +427,76 @@ const studentController = {
     }),
     
     // ────────────────────────────────────────────────────────────
-    // RESET PASSWORD FUNCTION
+    // RESET PASSWORD - VERIFY TOKEN & UPDATE PASSWORD
     // ────────────────────────────────────────────────────────────
-     resetPassword :asyncHandler(async (req, res) => {
+    resetPassword: asyncHandler(async (req, res) => {
         try {
             console.log("🔹 Reset Password Request Received");
+            console.log("🔹 Full Request Body:", req.body);
+            console.log("🔹 Query:", req.query);
+            console.log("🔹 Params:", req.params);
+
     
-            const { token } = req.query; // Use req.query if the token is passed as a query parameter
- // Changed from req.query to req.params
-            const { newPassword } = req.body;
+            // Extract token and email from query parameters
+            const { token } = req.params;
+            const { newPassword,email } = req.body;
     
+            // Validate token, email, and new password
             if (!token) {
                 console.error("❌ Error: Reset token is missing");
                 return res.status(400).json({ error: "Reset token is required" });
             }
     
-            if (!newPassword) {
-                console.error("❌ Error: New password is missing");
-                return res.status(400).json({ error: "New password is required" });
+            if (!email) {
+                console.error("❌ Error: Email is missing");
+                return res.status(400).json({ error: "Email is required" });
+            }
+    
+            if (!newPassword || newPassword.length < 6) {
+                console.error("❌ Error: Password is missing or too short");
+                return res.status(400).json({ error: "New password must be at least 6 characters long" });
             }
     
             let decoded;
             try {
                 decoded = jwt.verify(token, process.env.SECRET_KEY);
-                console.log("🔑 Token Verified Successfully");
+                console.log("🔑 Token Verified Successfully:", decoded);
             } catch (err) {
-                console.error("❌ Error: Invalid or expired token..........");
+                console.error("❌ Error: Invalid or expired token");
                 return res.status(400).json({ error: "Invalid or expired token" });
             }
     
-            // Find user by ID
+            // Find user by ID from token payload
             const user = await Student.findById(decoded.id);
+            console.log("decoded", decoded.id);
+    
             if (!user) {
-                console.error("❌ Error: No user found");
+                console.error("❌ Error: No user found with given token");
                 return res.status(404).json({ error: "User not found" });
             }
     
-            // Hash the new password
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(newPassword, salt);
-            user.password = hashedPassword;
-            
-            // Save new password
-            await user.save();
-            console.log("✅ Password Reset Successfully!");
+            // Verify that the email matches the user's email
+            if (user.email !== email) {
+                console.error("❌ Error: Email does not match the user's email");
+                return res.status(400).json({ error: "Invalid email" });
+            }
     
+            // Hash the new password and update user record
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(newPassword, salt);
+    
+            // Update user in the database (without re-saving the whole object)
+            await Student.updateOne({ _id: user._id }, { $set: { password: user.password } });
+    
+            console.log("✅ Password Reset Successfully!");
             return res.status(200).json({ message: "Password reset successfully!" });
     
         } catch (error) {
             console.error("❌ General Error:", error);
             return res.status(500).json({ error: error.toString() });
         }
-    })
-
+    }),
+    
 };
 
 module.exports = studentController;
