@@ -5,129 +5,96 @@ const Leave = require("../model/leaveModel");
 require("dotenv").config();
 
 const leaveController = {
-  // Get all leave applications
   getLeaves: asyncHandler(async (req, res) => {
     const leaves = await Leave.find();
-    if (!leaves) {
-      throw new Error("No leave applications found");
+    if (!leaves || leaves.length === 0) {
+      return res.status(404).json({ message: "No leave applications found" });
     }
-
-    const formattedLeaves = leaves.map((leave) => ({
-      id: leave._id,
-      category: leave.category,
-      startDate: leave.startDate,
-      endDate: leave.endDate,
-      reason: leave.reason,
-      attachment: leave.attachment,
-    }));
-
     res.json({
       message: "Leave applications fetched successfully",
-      leaves: formattedLeaves,
+      leave: leaves,
     });
   }),
 
-  // Get a single leave application by ID
   getLeaveById: asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid leave ID");
+      return res.status(400).json({ message: "Invalid leave ID" });
     }
 
     const leave = await Leave.findById(id);
     if (!leave) {
-      throw new Error("Leave application not found");
+      return res.status(404).json({ message: "Leave application not found" });
     }
 
     res.json({
       message: "Leave application fetched successfully",
-      leave: {
-        id: leave._id,
-        category: leave.category,
-        startDate: leave.startDate,
-        endDate: leave.endDate,
-        reason: leave.reason,
-        attachment: leave.attachment,
-      },
+      leave: leave,
     });
   }),
 
-  // Submit a new leave application
   submitLeave: asyncHandler(async (req, res) => {
-    const { category, startDate, endDate, reason } = req.body;
+    const { name, category, startDate, endDate, days, reason } = req.body;
     const attachment = req.file ? req.file.filename : null;
 
+    if (!name || !category || !startDate || !endDate || !days || !reason) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    if (days <= 0) {
+      return res.status(400).json({ message: "Days must be at least 1" });
+    }
+
     const newLeave = await Leave.create({
+      name,
       category,
       startDate,
       endDate,
+      days,
       reason,
       attachment,
     });
 
-    if (!newLeave) {
-      throw new Error("Leave application could not be submitted");
-    }
-
-    res.json({
+    res.status(201).json({
       message: "Leave application submitted successfully",
-      leave: {
-        id: newLeave._id,
-        category: newLeave.category,
-        startDate: newLeave.startDate,
-        endDate: newLeave.endDate,
-        reason: newLeave.reason,
-        attachment: newLeave.attachment,
-      },
+      leave: newLeave,
     });
   }),
 
-  // Update a leave application
   updateLeave: asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid leave ID");
+      return res.status(400).json({ message: "Invalid leave ID" });
     }
 
-    const updatedLeave = await Leave.findByIdAndUpdate(
-      id,
-      {
-        category: req.body.category,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
-        reason: req.body.reason,
-        attachment: req.file ? req.file.filename : req.body.attachment,
-      },
-      { new: true }
-    );
+    const updatedLeave = await Leave.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!updatedLeave) {
-      throw new Error("Leave application not found or could not be updated");
+      return res.status(404).json({
+        message: "Leave application not found or could not be updated",
+      });
     }
 
     res.json({
       message: "Leave application updated successfully",
-      leave: {
-        id: updatedLeave._id,
-        category: updatedLeave.category,
-        startDate: updatedLeave.startDate,
-        endDate: updatedLeave.endDate,
-        reason: updatedLeave.reason,
-        attachment: updatedLeave.attachment,
-      },
+      leave: updatedLeave,
     });
   }),
 
-  // Delete a leave application
   deleteLeave: asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid leave ID");
+      return res.status(400).json({ message: "Invalid leave ID" });
     }
 
     const deletedLeave = await Leave.findByIdAndDelete(id);
     if (!deletedLeave) {
-      throw new Error("Leave application not found or could not be deleted");
+      return res.status(404).json({
+        message: "Leave application not found or could not be deleted",
+      });
     }
 
     res.json({

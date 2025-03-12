@@ -4,7 +4,7 @@ const Book = require('../model/bookModel');
 require('dotenv').config();
 
 const bookController = {
-    // Get all books
+   
     getBooks: asyncHandler(async (req, res) => {
         const books = await Book.find();
         if (!books) {
@@ -16,7 +16,7 @@ const bookController = {
         });
     }),
 
-    // Get a single book by ID
+   
     getBookById: asyncHandler(async (req, res) => {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -34,7 +34,6 @@ const bookController = {
         });
     }),
 
-    // Add a new book
     addBook: asyncHandler(async (req, res) => {
         const { name,author,category,price,rackNumber,status } = req.body;
         const newBook = await Book.create({
@@ -57,7 +56,7 @@ const bookController = {
         });
     }),
 
-    // Update book details
+    
     updateBook: asyncHandler(async (req, res) => {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -75,7 +74,7 @@ const bookController = {
         });
     }),
 
-    // Delete a book
+   
     deleteBook: asyncHandler(async (req, res) => {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {

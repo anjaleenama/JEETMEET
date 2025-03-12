@@ -4,11 +4,11 @@ const Exam = require("../model/examModel");
 require("dotenv").config();
 
 const examController = {
-  // Get all exams
+  
   getExams: asyncHandler(async (req, res) => {
     const exams = await Exam.find();
-    if (!exams) {
-      throw new Error("No exams found");
+    if (!exams || exams.length === 0) {
+      return res.status(404).json({ message: "No exams found" });
     }
     res.json({
       message: "Exams fetched successfully",
@@ -16,16 +16,15 @@ const examController = {
     });
   }),
 
-  // Get a single exam by ID
   getExamById: asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid exam ID");
+      return res.status(400).json({ message: "Invalid exam ID" });
     }
 
     const exam = await Exam.findById(id);
     if (!exam) {
-      throw new Error("Exam not found");
+      return res.status(404).json({ message: "Exam not found" });
     }
 
     res.json({
@@ -34,58 +33,66 @@ const examController = {
     });
   }),
 
-  // Add a new exam
   addExam: asyncHandler(async (req, res) => {
-    const { title, date, duration } = req.body;
-    const newExam = await Exam.create({
-      title,
-      date,
-      duration,
-    });
+    const { category, classDivision, subject, room, date, time, instructions } = req.body;
 
-    if (!newExam) {
-      throw new Error("Exam could not be inserted");
+    // Validate required fields
+    if (!category || !classDivision || !subject || !room || !date || !time || !instructions) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
-    res.json({
+    // Validate date format
+    if (isNaN(Date.parse(date))) {
+      return res.status(400).json({ message: "Invalid date format. Use YYYY-MM-DD." });
+    }
+
+    const newExam = await Exam.create({
+      category,
+      classDivision,
+      subject,
+      room,
+      date,
+      time,
+      instructions
+    });
+
+    res.status(201).json({
       message: "Exam inserted successfully",
       exam: newExam,
     });
   }),
 
-  // Update an exam
   updateExam: asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid exam ID");
+      return res.status(400).json({ message: "Invalid exam ID" });
     }
 
-    const updatedExam = await Exam.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedExam = await Exam.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
     if (!updatedExam) {
-      throw new Error("Exam not found or could not be updated");
+      return res.status(404).json({ message: "Exam not found or could not be updated" });
     }
 
     res.json({
       message: "Exam updated successfully",
-      updatedExam,
+      exam: updatedExam,
     });
   }),
 
-  // Delete an exam
   deleteExam: asyncHandler(async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new Error("Invalid exam ID");
+      return res.status(400).json({ message: "Invalid exam ID" });
     }
 
     const deletedExam = await Exam.findByIdAndDelete(id);
     if (!deletedExam) {
-      throw new Error("Exam not found or could not be deleted");
+      return res.status(404).json({ message: "Exam not found or could not be deleted" });
     }
 
     res.json({
       message: "Exam deleted successfully",
-      deletedExam,
+      deletedExamId: deletedExam._id,
     });
   }),
 };

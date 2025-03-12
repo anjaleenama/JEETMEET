@@ -2,10 +2,6 @@ const { default: mongoose } = require("mongoose");
 
 
 const ExamSchema = new mongoose.Schema({
-  subject:{
-  type:String,
-},
-
   category: {
     type:String,
   },
@@ -14,12 +10,19 @@ const ExamSchema = new mongoose.Schema({
    type:String,
 },
 
+subject:{
+  type:String,
+},
   room: {
     type:String,
   },
 
   date:{
     type:Date,
+  },
+
+  time:{
+    type:String
   },
 
   instructions: {

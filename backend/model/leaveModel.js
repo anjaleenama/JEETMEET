@@ -9,7 +9,10 @@ const LeaveSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         default: () => new mongoose.Types.ObjectId(), 
         },
-        
+  name:{
+  type:String,
+  },
+
   category:{
   type:String,
   required: true,
@@ -24,6 +27,11 @@ const LeaveSchema = new mongoose.Schema({
     type:Date,
     required: true,
    },
+   
+  days:{
+    type:Number,
+    required: true,
+  }, 
 
   reason:{
     type:String,

@@ -5,9 +5,6 @@ require("dotenv").config();
 
 
 const chatController = {
-
-// send message
-
 sendMessage : asyncHandler(async (req, res) => {
     const { senderId, receiverId, message } = req.body;
 
@@ -27,7 +24,7 @@ sendMessage : asyncHandler(async (req, res) => {
     }
 }),
 
-//get chat history
+
 
  getChatHistory : asyncHandler(async (req, res) => {
     const { senderId, receiverId } = req.params;
@@ -51,7 +48,7 @@ sendMessage : asyncHandler(async (req, res) => {
 }),
 
 
-// Delete a chat message
+
  deleteMessage : asyncHandler(async (req, res) => {
     const { messageId } = req.params;
 
