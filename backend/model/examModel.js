@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose");
 
 
 
-const resultSchema = new mongoose.Schema({
+const examSchema = new mongoose.Schema({
     date: { 
         type: Date, 
         required: true,
@@ -44,11 +44,12 @@ const resultSchema = new mongoose.Schema({
         trim: true,
     }, // Example: "Room 4"
   instruction: { 
-        type: String 
+        type: [String] ,
+        default:[]
     },
     // questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }]
 
 })
 
-const Result = mongoose.model("examdetails", resultSchema);
-module.exports =Result
+const examDetails = mongoose.model("examdetails", examSchema);
+module.exports =examDetails

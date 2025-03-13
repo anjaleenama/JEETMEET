@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const Result = require("../model/resultModel");
+const examDetails = require("../model/examModel");
+
 
 
 const examDetailsDisplayController ={
@@ -14,7 +15,7 @@ examDetails:asyncHandler(async (req,res) => {
 
     console.log(date,endTime,startTime,examType,category,classDivision,subject,room,instructions);
 
-    const examdetails = await Result.create({
+    const examdetails = await examDetails.create({
         date,
         startTime,
         endTime,
@@ -35,7 +36,7 @@ examDetails:asyncHandler(async (req,res) => {
 }),
 
 showExamDetails: asyncHandler(async (req,res) => {
-    const fetchedExamDetails = await Result.find()
+    const fetchedExamDetails = await examDetails.find()
 
     if (!fetchedExamDetails || fetchedExamDetails.length === 0) {
         return res.status(404).json({ error: "No exam details found" });
@@ -51,7 +52,7 @@ viewStartExamPage: asyncHandler(async (req,res) => {
     if (!classDivision) {
         return res.status(400).json({ error: "Class division is required" });
       }
-    const fetchedDetails = await Result.find({classDivision:classDivision}).select("date startTime endTime examType classDivision subject")
+    const fetchedDetails = await examDetails.find({classDivision:classDivision}).select("date startTime endTime examType classDivision subject")
 
     if (!fetchedDetails.length) {
         return res.status(404).json({ error: "No exams found for this class division" });
