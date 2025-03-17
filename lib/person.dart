@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_internship/chat.dart';
+import 'package:jeet_meet/chat.dart';
+
 
 class Person extends StatefulWidget {
   final  nam,images;

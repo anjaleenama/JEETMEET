@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_internship/person.dart';
+import 'package:jeet_meet/person.dart';
+
 //import 'package:project_internship/personcontent.dart';
 
 class Content extends StatelessWidget {

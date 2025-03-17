@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:project_internship/onlineexam.dart';
+import 'package:jeet_meet/onlineexam.dart';
+
 
 class Schedule extends StatefulWidget {
   const Schedule({super.key});
