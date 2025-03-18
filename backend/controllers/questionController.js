@@ -29,17 +29,34 @@ const questionController = {
            })
         
     }),
-    displayQuestion:asyncHandler(async (req,res) => {
-        const {subject,classDivision}=req.body
-
-        const questions = await Question.find({classDivision:classDivision , subject:subject})
+    displayQuestion: asyncHandler(async (req, res) => {
+        try {
+            const { subject, classDivision } = req.params;
+    
+            console.log("Fetching questions for:", { classDivision, subject });
         
-        const sanitizedQuestion = questions.map(q =>({
-            _id : q._id,
-            questionText : q.questionText,
-            options : q.options.map(opt =>({text: opt.text}))
-        }))
-        res.json(sanitizedQuestion)
+    
+            const questions = await Question.find({ classDivision: classDivision, subject: subject });
+    
+            if (questions.length === 0) {
+                return res.status(404).json({ message: "No questions found for the given class and subject." });
+            }
+    
+            // console.log("Questions found:", questions);
+    
+            const sanitizedQuestion = questions.map(q => ({
+                _id: q._id,
+                questionText: q.questionText,
+                options: q.options.map(opt => ({ text: opt.text }))
+            }));
+    
+            // console.log("Sanitized questions:", sanitizedQuestion);
+    
+            res.json(sanitizedQuestion);
+        } catch (error) {
+            console.error("Error in displayQuestion:", error);
+            res.status(500).json({ error: "Failed to fetch questions" });
+        }
     }),
     submitExam: asyncHandler(async (req, res) => {
         const { answers } = req.body;

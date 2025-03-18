@@ -5,8 +5,8 @@ const examDetailsDisplayController = require("../controllers/examDetailsDisplayC
 
 const examDetailsDisplayRouter = express.Router()
 
-examDetailsDisplayRouter.post("/result",examDetailsDisplayController.examDetails),
+examDetailsDisplayRouter.post("/insert-exam-details",examDetailsDisplayController.examDetails),
 examDetailsDisplayRouter.post("/exam-details",examDetailsDisplayController.showExamDetails)
-examDetailsDisplayRouter.post("/detailstostartexam",examDetailsDisplayController.viewStartExamPage)
+examDetailsDisplayRouter.get("/details-to-start-exam/:classDivision",examDetailsDisplayController.viewStartExamPage)
 
 module.exports=examDetailsDisplayRouter

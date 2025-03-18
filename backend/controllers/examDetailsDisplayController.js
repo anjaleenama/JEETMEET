@@ -48,16 +48,19 @@ showExamDetails: asyncHandler(async (req,res) => {
 
 viewStartExamPage: asyncHandler(async (req,res) => {
 
-    const { classDivision } = req.body;
+    const { classDivision } = req.params;
     if (!classDivision) {
         return res.status(400).json({ error: "Class division is required" });
       }
-    const fetchedDetails = await examDetails.find({classDivision:classDivision}).select("date startTime endTime examType classDivision subject")
+      console.log("Fetching details for class division:", classDivision);
+
+    const fetchedDetails = await examDetails.find({classDivision:classDivision}).select(" -_id date startTime endTime examType classDivision subject")//-_id from remove the objectId that automatically passed
 
     if (!fetchedDetails.length) {
         return res.status(404).json({ error: "No exams found for this class division" });
       }
-    res.send(fetchedDetails)
+
+        res.status(200).json(fetchedDetails)
 })
 
 };
