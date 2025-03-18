@@ -11,6 +11,7 @@ import 'package:jeet_meet/diary.dart';
 import 'package:jeet_meet/events.dart';
 import 'package:jeet_meet/examschedule.dart';
 import 'package:jeet_meet/issued_book.dart';
+import 'package:jeet_meet/leave.dart';
 import 'package:jeet_meet/leave_apply.dart';
 import 'package:jeet_meet/online_class.dart';
 import 'package:jeet_meet/profile.dart';
@@ -131,10 +132,10 @@ class SidebarMenu extends StatelessWidget {
                 title: Text('Leave Application'),
                 children: [
                   ListTile(title: Text('Assigned Leave'), onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> AssignedLeavePage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LeaveScreen()));
                   }),
                   ListTile(title: Text('Leave Apply'), onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LeaveApplicationScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LeaveScreen()));
                   }),
                 ],
               ),
