@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/Exam_result3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -135,7 +136,9 @@ class ExamQuestionCard extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ExamResult3()));
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple.shade600,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

@@ -199,7 +199,9 @@ class ExamResult3 extends StatelessWidget {
                   backgroundColor: const Color.fromARGB(255, 23, 2, 75),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ExamResult3()));
+                },
                child:Text("View",style:TextStyle(
                 color: Colors.white
                ),)),
