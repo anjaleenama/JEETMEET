@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/drawyer.dart';
 
 class myprofileone extends StatelessWidget {
-  const myprofileone({super.key});
+   myprofileone({super.key});
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       key: _scaffoldKey, 
+       drawer: Drawer(child:MyDrawerPage() ,),
       backgroundColor: Colors.grey[200],
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -25,10 +30,14 @@ class myprofileone extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 30,
+                  child: InkWell(onTap: (){
+                  _scaffoldKey.currentState?.openDrawer();
+                  },
+                    child: Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
                 ),
                 Padding(

@@ -10,9 +10,7 @@ class MyDrawerPage extends StatefulWidget {
 class _MyDrawerPageState extends State<MyDrawerPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(
+    return Drawer(
         child: Expanded(
           child: ListView(
             children: [
@@ -72,7 +70,7 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
             ],
           ),
         ),
-      ),
+     
     );
   }
 }
