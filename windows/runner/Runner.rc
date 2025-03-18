@@ -91,6 +91,7 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
 <<<<<<< HEAD
+<<<<<<< HEAD
             VALUE "FileDescription", "jeet_meet" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "jeet_meet" "\0"
@@ -105,6 +106,14 @@ BEGIN
             VALUE "OriginalFilename", "jeetmeet.exe" "\0"
             VALUE "ProductName", "jeetmeet" "\0"
 >>>>>>> origin/malavika
+=======
+            VALUE "FileDescription", "live_project" "\0"
+            VALUE "FileVersion", VERSION_AS_STRING "\0"
+            VALUE "InternalName", "live_project" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename", "live_project.exe" "\0"
+            VALUE "ProductName", "live_project" "\0"
+>>>>>>> origin/keerthana
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

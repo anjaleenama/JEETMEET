@@ -60,9 +60,12 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       enableGPUValidationMode = "1"
 >>>>>>> origin/malavika
+=======
+>>>>>>> origin/keerthana
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">

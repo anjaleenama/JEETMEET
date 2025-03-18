@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:label="jeet_meet"
 =======
         android:label="jeetmeet"
 >>>>>>> origin/malavika
+=======
+        android:label="live_project"
+>>>>>>> origin/keerthana
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

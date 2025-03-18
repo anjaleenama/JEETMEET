@@ -6,10 +6,14 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<string>Jeet Meet</string>
 =======
 	<string>Jeetmeet</string>
 >>>>>>> origin/malavika
+=======
+	<string>Live Project</string>
+>>>>>>> origin/keerthana
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -18,10 +22,14 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<string>jeet_meet</string>
 =======
 	<string>jeetmeet</string>
 >>>>>>> origin/malavika
+=======
+	<string>live_project</string>
+>>>>>>> origin/keerthana
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

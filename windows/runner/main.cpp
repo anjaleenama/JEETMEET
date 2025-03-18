@@ -28,10 +28,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   Win32Window::Point origin(10, 10);
   Win32Window::Size size(1280, 720);
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (!window.Create(L"jeet_meet", origin, size)) {
 =======
   if (!window.Create(L"jeetmeet", origin, size)) {
 >>>>>>> origin/malavika
+=======
+  if (!window.Create(L"live_project", origin, size)) {
+>>>>>>> origin/keerthana
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);
