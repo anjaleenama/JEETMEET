@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/Exam_result1.dart';
 import 'package:jeet_meet/Exam_result2.dart';
 import 'package:jeet_meet/Exam_result3.dart';
 import 'package:jeet_meet/Request_book.dart';
@@ -30,66 +31,65 @@ class _MyDrawerPageState extends State<MyDrawerPage> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: Expanded(
-          child: ListView(
-            children: [
-              Container(
-                height: 150,
-                width: double.infinity,
-                color: Colors.red,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 90,
-                            height: 90,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 2),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  'assets/profileimage.png',
-                                ),
-                                fit: BoxFit.contain,
+      child: Expanded(
+        child: ListView(
+          children: [
+            Container(
+              height: 150,
+              width: double.infinity,
+              color: Colors.red,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                'assets/profileimage.png',
                               ),
+                              fit: BoxFit.contain,
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Hello",
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 8),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "Siobhan L. Seal",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hello",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 8),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Siobhan L. Seal",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SidebarMenu(),
-            ],
-          ),
+            ),
+            SidebarMenu(),
+          ],
         ),
-     
+      ),
     );
   }
 }
@@ -116,27 +116,55 @@ class SidebarMenu extends StatelessWidget {
             leading: Icon(Icons.person),
             title: Text('Personal'),
             children: [
-              ListTile(title: Text('My Profile'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfileScreen()));
-              }),
-              ListTile(title: Text('My Diaries'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> DiaryScreen()));
-              }),
-              ListTile(title: Text('Staff Directory'), onTap: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=> StaffDirectoryScreen()));
-              }),
-              ListTile(title: Text('Calendar'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CalendarScreen()));
-              }),
+              ListTile(
+                  title: Text('My Profile'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyProfileScreen()));
+                  }),
+              ListTile(
+                  title: Text('My Diaries'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DiaryScreen()));
+                  }),
+              ListTile(
+                  title: Text('Staff Directory'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StaffDirectoryScreen()));
+                  }),
+              ListTile(
+                  title: Text('Calendar'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CalendarScreen()));
+                  }),
               ExpansionTile(
                 title: Text('Leave Application'),
                 children: [
-                  ListTile(title: Text('Assigned Leave'), onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LeaveScreen()));
-                  }),
-                  ListTile(title: Text('Leave Apply'), onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LeaveScreen()));
-                  }),
+                  ListTile(
+                      title: Text('Assigned Leave'),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LeaveScreen()));
+                      }),
+                  ListTile(
+                      title: Text('Leave Apply'),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LeaveScreen()));
+                      }),
                 ],
               ),
             ],
@@ -155,22 +183,41 @@ class SidebarMenu extends StatelessWidget {
             leading: Icon(Icons.alarm),
             title: Text('Academic'),
             children: [
-              ListTile(title: Text('Assignment'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Assignment()));
-              }),
-              ListTile(title: Text('Subject'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>SubjectScreen()));
-              }),
+              ListTile(
+                  title: Text('Assignment'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Assignment()));
+                  }),
+              ListTile(
+                  title: Text('Subject'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SubjectScreen()));
+                  }),
               // ListTile(title: Text('Library'), onTap: () {}),
-              ListTile(title: Text('Timetable'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>MyTimeTable()));
-              }),
-              ListTile(title: Text('Attendance'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Attendance()));
-              }),
-              ListTile(title: Text('Events'), onTap: () {
-               Navigator.push(context, MaterialPageRoute(builder: (context)=> EventsScreen())); 
-              }),
+              ListTile(
+                  title: Text('Timetable'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyTimeTable()));
+                  }),
+              ListTile(
+                  title: Text('Attendance'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Attendance()));
+                  }),
+              ListTile(
+                  title: Text('Events'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EventsScreen()));
+                  }),
             ],
           ),
         ),
@@ -186,12 +233,20 @@ class SidebarMenu extends StatelessWidget {
             leading: Icon(Icons.book_outlined),
             title: Text('Library'),
             children: [
-              ListTile(title: Text('Request Book'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> RequestBook()));
-              }),
-              ListTile(title: Text('Borrowed Books'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>IssuedBookScreen()));
-              }),
+              ListTile(
+                  title: Text('Request Book'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => RequestBook()));
+                  }),
+              ListTile(
+                  title: Text('Borrowed Books'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => IssuedBookScreen()));
+                  }),
             ],
           ),
         ),
@@ -207,15 +262,26 @@ class SidebarMenu extends StatelessWidget {
             leading: Icon(Icons.rotate_90_degrees_ccw),
             title: Text('Exams'),
             children: [
-              ListTile(title: Text('Exam Scheduled'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Schedule()));
-              }),
-              ListTile(title: Text('Attend Exam'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>AttendExam()));
-              }),
-              ListTile(title: Text('Exam Result'), onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ExamResultScreen1()));
-              }),
+              ListTile(
+                  title: Text('Exam Scheduled'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Schedule()));
+                  }),
+              ListTile(
+                  title: Text('Attend Exam'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AttendExam()));
+                  }),
+              ListTile(
+                  title: Text('Exam Result'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ExamResultScreen()));
+                  }),
             ],
           ),
         ),
@@ -223,7 +289,8 @@ class SidebarMenu extends StatelessWidget {
             leading: Icon(Icons.online_prediction),
             title: Text('Online Class'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>OnlineClassScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => OnlineClassScreen()));
             }),
         ListTile(
             leading: Icon(Icons.logout), title: Text('Logout'), onTap: () {}),
