@@ -11,6 +11,7 @@ import 'package:jeet_meet/calender.dart';
 import 'package:jeet_meet/diary.dart';
 import 'package:jeet_meet/events.dart';
 import 'package:jeet_meet/examschedule.dart';
+import 'package:jeet_meet/examshedule.dart';
 import 'package:jeet_meet/issued_book.dart';
 import 'package:jeet_meet/leave.dart';
 import 'package:jeet_meet/leave_apply.dart';
