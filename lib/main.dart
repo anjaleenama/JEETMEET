@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/Splashscreen.dart';
 import 'package:jeet_meet/drawyer.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyDrawerPage(),
+      home:MySplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

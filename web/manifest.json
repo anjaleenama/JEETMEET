@@ -1,6 +1,6 @@
 {
-    "name": "jeet_meet",
-    "short_name": "jeet_meet",
+    "name": "jeetmeet",
+    "short_name": "jeetmeet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
