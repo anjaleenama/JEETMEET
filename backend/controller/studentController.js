@@ -29,11 +29,14 @@ const studentController = {
             state, 
             country, 
             natonality, 
-            username // Add username here
+            register_number,
+            username,
+            gender,
+            phone // Add phone field here
         } = req.body;
     
-        // Check if all required fields are provided, including username
-        if (!email || !password || !name || !profile_image || !classes || !division || !roll_number || !dob || !parent_id || !username) {
+        // Check if all required fields are provided, including username, gender, and phone
+        if (!email || !password || !name || !profile_image || !classes || !division || !register_number || !roll_number || !dob || !parent_id || !username || !gender || !phone) {
             return res.status(400).json({ message: "Incomplete data" });
         }
     
@@ -45,7 +48,7 @@ const studentController = {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 12);
     
-        // Create a new student with the provided data, including username
+        // Create a new student with the provided data, including username, gender, and phone
         const newStudent = await Student.create({
             email,
             password: hashedPassword,
@@ -64,7 +67,10 @@ const studentController = {
             state,
             country,
             natonality,
-            username // Include username here
+            username,
+            register_number,
+            gender,
+            phone // Include phone in the new student object
         });
     
         // Check if the student was successfully created
@@ -98,47 +104,63 @@ const studentController = {
 
         res.status(201).json({ message: "Parent added successfully", parent: newParent });
     }),
-    dashBoard :asyncHandler(async (req, res) => {
-        const { id, email } = req.user;
-        console.log(req.user);
+    dashBoard: asyncHandler(async (req, res) => {
+        
+    
+        const { id } = req.query;
+    
+        // Check if required fields are provided
+        if (!id ) {
+            return res.status(400).json({ message: "id and email are required" });
+        }
     
         try {
-            const studentDetails = await Student.findOne({ email }); // Use findOne for a single student
+            // Fetch student details
+            const studentDetails = await Student.findOne({ _id:id });
     
             if (!studentDetails) {
                 return res.status(404).json({ message: "Student not found" });
             }
     
-            const notifications = await Notification.find({ user_id: id }); // Use find
-
-            res.status(200).json({  // Send a JSON response
+            // Fetch notifications for the student
+            const notifications = await Notification.find();
+    
+            // Send response with student details and notifications
+            res.status(200).json({
                 student: studentDetails,
-                notifications: notifications, // Or userNotification if you kept that variable
+                notifications: notifications,
             });
     
         } catch (error) {
             console.error("Dashboard error:", error);
-            res.status(500).json({ message: "Server error" });
+            res.status(500).json({ message: "Server error", error: error.message });
         }
     }),
+    
     insertNotification: asyncHandler(async (req, res) => {
-        const { user_id, title, message, type } = req.body;
-
-        if (!user_id || !title || !message) {
-            return res.status(400).json({ message: "Incomplete data" });
+        const { title, message, type } = req.body;
+    
+        // Validate required fields
+        if (!title || !message) {
+            return res.status(400).json({ message: "title and message are required" });
         }
-        
+    
         try {
+            // Create a new notification (without user_id)
             const newNotification = await Notification.create({
-                user_id,
                 title,
                 message,
-                type: type || "info" // Default type is "info"
+                type: type || "info", // Default type is "info"
             });
-
-
-            res.status(201).json({ message: "Notification added successfully", notification: newNotification });
+    
+            // Send success response
+            res.status(201).json({
+                message: "Notification added successfully",
+                notification: newNotification,
+            });
+    
         } catch (error) {
+            console.error("Failed to add notification:", error);
             res.status(500).json({ message: "Failed to add notification", error: error.message });
         }
     }),
