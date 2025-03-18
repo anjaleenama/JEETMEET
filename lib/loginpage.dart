@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/profile_1.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({super.key});
@@ -50,7 +51,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
           ),
           TextButton(onPressed: () {}, child: Text("Forgot your password")),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>myprofileone()));
+            },
             child: Text(
               "Login",
               style:
