@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jeet_meet/drawyer.dart';
+import 'package:jeet_meet/loginpage.dart';
+import 'package:jeet_meet/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyDrawerPage(),
+      home: MyProfileScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
