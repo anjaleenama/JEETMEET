@@ -57,15 +57,19 @@ class OnlineClassScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
               children: [
               
-                Text(
-                  "Date: 17-Mar-2020",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                Expanded(
+                  child: Text(
+                    "Date: 17-Mar-2020",
+                    style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                  ),
                 ),
                 SizedBox(width:180,),
-                 Text(
-              "09:30 AM - 04:30 PM",
-              style: TextStyle(color: Colors.grey[600], fontSize: 14),
-            ),
+                 Expanded(
+                   child: Text(
+                                 "09:30 AM - 04:30 PM",
+                                 style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                               ),
+                 ),
            
               ],
             ),

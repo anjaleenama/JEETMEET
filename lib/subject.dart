@@ -30,59 +30,51 @@ class SubjectScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      
-                      padding: const EdgeInsets.symmetric(vertical: 30),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            blurRadius: 4,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      child: IntrinsicHeight(
-                        child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                    Text("Copy"),
-                    VerticalDivider(thickness: 1, color: Colors.grey),
-                    Text("Excel"),
-                    VerticalDivider(thickness: 1, color: Colors.grey),
-                    Text("CSV"),
-                    VerticalDivider(thickness: 1, color: Colors.grey),
-                    Text("PDF"),
-                    
-                                    ],
-                                  ),
-                      ),
-                    ),
+                Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      buildTextButton("Copy"),
+                      buildDivider(),
+                      buildTextButton("Excel"),
+                      buildDivider(),
+                      buildTextButton("CSV"),
+                      buildDivider(),
+                      buildTextButton("PDF"),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 8),
-                ElevatedButton.icon(
+                ElevatedButton(
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
-                    elevation: 2,
+                    padding: EdgeInsets.symmetric(horizontal:40, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                  onPressed: () {},
-                  icon: const Icon(Icons.filter_list),
-                  label: const Text("Filter"),
+                  child: Row(
+                    children: [
+                      Icon(Icons.filter_list, color: Colors.black),
+                      SizedBox(width: 5),
+                      Text("Filter"),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          
           Padding(
             padding: const EdgeInsets.all(10),
             child: Card(
@@ -95,30 +87,11 @@ class SubjectScreen extends StatelessWidget {
                     Text("Class: ${subject['class']}   Subject Code: ${subject['subjectCode']}",
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                     const Divider(),
-                    const Text("Subject Name", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    Text(subject['subjectName'], style: const TextStyle(fontSize: 14)),
-                    const SizedBox(height: 5),
-                    const Text("Teacher", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    Text(subject['teachers'].join(", "), style: const TextStyle(fontSize: 14)),
-                    const SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Text("Subject Author: ", style: const TextStyle(fontSize: 14)),
-                        Text("${subject['subjectAuthor']}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("Pass Mark: ", style: const TextStyle(fontSize: 14)),
-                        Text(" ${subject['passMark']}", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("Final Mark:", style: const TextStyle(fontSize: 14)),
-                        Text(" ${subject['finalMark']}",style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                    buildDetailRow("Subject Name", subject['subjectName']),
+                    buildDetailRow("Teacher", subject['teachers'].join(", ")),
+                    buildDetailRow("Subject Author", subject['subjectAuthor']),
+                    buildDetailRow("Pass Mark", subject['passMark'].toString()),
+                    buildDetailRow("Final Mark", subject['finalMark'].toString()),
                     const SizedBox(height: 5),
                     const Text("Note:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     Text(subject['note'], style: const TextStyle(fontSize: 14)),
@@ -127,6 +100,32 @@ class SubjectScreen extends StatelessWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  /// Builds a text button inside the top options container
+  Widget buildTextButton(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Text(text, style: TextStyle(fontSize: 14)),
+    );
+  }
+
+  /// Creates a vertical divider between text buttons
+  Widget buildDivider() {
+    return const VerticalDivider(thickness: 1, color: Colors.grey);
+  }
+
+  /// Creates a row for subject details with proper spacing
+  Widget buildDetailRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Text("$label: ", style: const TextStyle(fontSize: 14)),
+          Text(value, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
         ],
       ),
     );
