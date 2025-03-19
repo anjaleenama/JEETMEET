@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class myprofileone extends StatelessWidget {
-  const myprofileone({super.key});
+  var head = [
+    "Programming Contest",
+    "Annual Sports Day",
+    "Annual Sports Day",
+    "Second Semester Exam",
+  ];
+  var subhead = [
+    "On 20-11-2018 will held a programming \n contest on the ",
+    "	In your school campus on 1-03-2018 wil.. ",
+    "	In your school campus on 1-03-2018 wil.. ",
+    "Your second semester exam will held\n on 30-08-2018.Pl.. "
+  ];
+  myprofileone({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +30,8 @@ class myprofileone extends StatelessWidget {
                   height: 450,
                   decoration: const BoxDecoration(
                     color: Colors.red,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.elliptical(180, 40),
                     ),
                   ),
                 ),
@@ -130,7 +142,7 @@ class myprofileone extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                        padding: const EdgeInsets.only(top: 330),
+                        padding: const EdgeInsets.only(top: 310),
                         child: Column(children: [
                           CircleAvatar(
                             radius: 30,
@@ -163,130 +175,62 @@ class myprofileone extends StatelessWidget {
               ),
               elevation: 5,
               margin: EdgeInsets.all(16),
-              child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                      mainAxisSize:
-                          MainAxisSize.min, // Takes only required height
+              child: Container(
+                height: MediaQuery.sizeOf(context).height * 0.5,
+                child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  height: 25,
-                                ),
-                                CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage("assets/Frame.png"),
-                                  backgroundColor: Colors.white,
-                                  radius: 10,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  "Notice",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
                             SizedBox(
                               height: 25,
                             ),
-                            Text("Programming Contest",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15)),
-                            Row(
-                              children: [
-                                Text(
-                                    "On 20-11-2018 will held a programming \n contest on the "),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Icon(
-                                  Icons.forward_sharp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                            Divider(
-                              color: Colors.grey,
+                            CircleAvatar(
+                              backgroundImage: AssetImage("assets/Frame.png"),
+                              backgroundColor: Colors.white,
+                              radius: 10,
                             ),
                             SizedBox(
-                              height: 25,
-                            ),
-                            Text("Annual Sports Day",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15)),
-                            Row(
-                              children: [
-                                Text(
-                                    "	In your school campus on 1-03-2018 wil.. "),
-                                // SizedBox(
-                                //   width: ,
-                                // ),
-                                Icon(
-                                  Icons.forward_sharp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                            Divider(
-                              color: Colors.grey,
-                            ),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            Text("Annual Sports Day",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15)),
-                            Row(
-                              children: [
-                                Text(
-                                    "	In your school campus on 1-03-2018 wil.. "),
-                                // SizedBox(
-                                //   width: 70,
-                                // ),
-                                Icon(
-                                  Icons.forward_sharp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            Divider(
-                              color: Colors.grey,
+                              width: 10,
                             ),
                             Text(
-                              "Second Semester Exam",
+                              "Notice",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                    "Your second semester exam will held\n on 30-08-2018.Pl.. "),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                Icon(
-                                  Icons.forward_sharp,
-                                  color: Colors.grey,
-                                )
-                              ],
+                                color: Colors.grey,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
-                      ])),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Expanded(
+                          child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text("${head[index]}"),
+                                  subtitle: Text("${subhead[index]}"),
+                                  trailing: Icon(
+                                    Icons.forward_sharp,
+                                    color: Colors.grey,
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return Divider(
+                                  height: 5,
+                                  color: Colors.black,
+                                );
+                              },
+                              itemCount: head.length),
+                        ),
+                      ],
+                    )),
+              ),
             )
           ],
         ),

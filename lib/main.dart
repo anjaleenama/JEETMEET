@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jeet_meet/loginpage.dart';
 import 'package:jeet_meet/profile.dart';
+import 'package:jeet_meet/profile_1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyProfileScreen(),
+      home: MyLoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
