@@ -47,7 +47,7 @@ class _ExamResultScreenState extends State<ExamResultScreen> {
       ),
       body: Column(
         children: [
-          // Exam Details Header
+      
           GestureDetector(
             onTap: () {
               setState(() {
