@@ -6,15 +6,20 @@ require("dotenv").config();
 const examController = {
   
   getExams: asyncHandler(async (req, res) => {
+    console.log("Route hit: getExams");
+
     const exams = await Exam.find();
     if (!exams || exams.length === 0) {
+      console.log("No exams found");  // Debugging
       return res.status(404).json({ message: "No exams found" });
     }
-    res.json({
+
+    console.log("Exams fetched:", exams);
+    res.status(200).json({
       message: "Exams fetched successfully",
       exams,
     });
-  }),
+}),
 
   getExamById: asyncHandler(async (req, res) => {
     const { id } = req.params;

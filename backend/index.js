@@ -1,24 +1,27 @@
-const express = require('express');
-const connectdb = require('./db/connectdb');
-const  router  = require('./router');
-const cookieParser = require("cookie-parser")
+const express = require("express");
+const connectdb = require("./db/connectdb");
+const router = require("./router");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
+const app = express();
 
+// ✅ Apply Middleware
+app.use(express.json());
+app.use(cookieParser());
 
-const app = express()
+// ✅ Fix CORS issue (allow frontend requests)
+app.use(cors({ origin: "http://localhost:5173", 
+  optionsSuccessStatus: 200}));
 
-app.use(express.json())
+// ✅ Connect to MongoDB with error handling
+connectdb()
+  .then(() => console.log("Database connected successfully"))
+  .catch((err) => console.error("Database connection error:", err));
 
-app.use(cookieParser())
-
-connectdb().catch((err)=>{
-    console.log(err);
-})
-
-app.use("/api/v1",router)
-
-
-
+// ✅ API Routes
+app.use("/api/v1", router);
+// ✅ Start the server
 app.listen(4000,()=>{
     console.log("running");
 })
