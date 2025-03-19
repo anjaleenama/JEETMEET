@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:jeet_meet/onlineexam.dart';
 
 
-class shedule2 extends StatefulWidget {
-  const shedule2({super.key});
+class Schedule extends StatefulWidget {
+  const Schedule({super.key});
 
   @override
-  State<shedule2> createState() => _shedule2State();
+  State<Schedule> createState() => _ScheduleState();
 }
 
-class _shedule2State extends State<shedule2> {
+class _ScheduleState extends State<Schedule> {
   TimeOfDay selectedtime=TimeOfDay.now();
   List<Step> stepList()=>[
       

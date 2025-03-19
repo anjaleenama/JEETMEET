@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jeet_meet/Splashscreen.dart';
-import 'package:jeet_meet/events.dart';
 
-void main() {
-  runApp(const MyApp());
+//import 'package:project_internship/personcontent.dart';
+//import 'package:project_intern/onlineexam.dart';
+
+void main(List<String> args) {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -18,6 +18,7 @@ import 'package:jeet_meet/leave_apply.dart';
 import 'package:jeet_meet/online_class.dart';
 import 'package:jeet_meet/profile.dart';
 import 'package:jeet_meet/staff_directory.dart';
+import 'package:jeet_meet/stepp.dart';
 import 'package:jeet_meet/subject.dart';
 import 'package:jeet_meet/timetable.dart';
 
@@ -267,7 +268,7 @@ class SidebarMenu extends StatelessWidget {
                   title: Text('Exam Scheduled'),
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Schedule()));
+                        MaterialPageRoute(builder: (context) => Scheduleee()));
                   }),
               ListTile(
                   title: Text('Attend Exam'),
