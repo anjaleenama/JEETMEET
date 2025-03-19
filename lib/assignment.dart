@@ -152,6 +152,7 @@ class _AssignmentState extends State<Assignment> {
                               ),
                             ),
                             Card(
+                              color: Colors.white,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: SizedBox(
