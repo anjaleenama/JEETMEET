@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/Splashscreen.dart';
 import 'package:jeet_meet/events.dart';
 
 void main() {
@@ -11,10 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    
-      home:EventsScreen(),
+      home: MySplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
