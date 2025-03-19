@@ -41,12 +41,11 @@ class _AssignmentState extends State<Assignment> {
                 ))
           ],
         ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
             Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 9),
               child: Row(
                 children: [
                   Container(
@@ -119,222 +118,131 @@ class _AssignmentState extends State<Assignment> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 20),
-              child: Row(
-                children: [
-                  Text(
-                    "Class: 4 A",
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 121, 120, 120)),
-                  ),
-                  SizedBox(width: 97),
-                  Text("Academic Year : 2020-2021",
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 121, 120, 120),
-                      ))
-                ],
-              ),
+            SizedBox(
+              height: 20,
             ),
-            Container(
-              height: 280,
-              child: Padding(
-                padding: const EdgeInsets.all(5),
-                child: Card(
-                  elevation: 5,
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Container(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 10),
-                          child: Text("New Testing"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            "Category Name",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 121, 120, 120)),
-                          ),
-                        ),
-                        Row(
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.8,
+              child: ListView.builder(
+                  itemCount: 2,
+                  itemBuilder: (BuildContext, int) {
+                    return Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 20),
-                              child: Text("Deadline : "),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Text(
-                                "2021-04-10",
-                                style: TextStyle(color: Colors.red),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 9),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Class: 4 A",
+                                    style: TextStyle(
+                                        color: const Color.fromARGB(
+                                            255, 121, 120, 120)),
+                                  ),
+                                  Text("Academic Year : 2020-2021",
+                                      style: TextStyle(
+                                        color: const Color.fromARGB(
+                                            255, 121, 120, 120),
+                                      ))
+                                ],
                               ),
-                            )
+                            ),
+                            Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 10),
+                                        child: Text("New Testing"),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          "Category Name",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 121, 120, 120)),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, top: 20),
+                                            child: Text("Deadline : "),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 20),
+                                            child: Text(
+                                              "2021-04-10",
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          "Subject : Maths",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 121, 120, 120)),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      OutlinedButton(
+                                        style: OutlinedButton.styleFrom(
+                                            shape: BeveledRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(2))),
+                                        onPressed: () {},
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(Icons.attach_file),
+                                            Text("Attachment.png"),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                          "Contrary to popular belief, Lorem Ipsum is not simply\nrandom text. It has roots in a piece of",
+                                          style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 121, 120, 120),
+                                          )),
+                                      Text(
+                                        "More",
+                                        style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            color: const Color.fromARGB(
+                                                255, 141, 138, 138)),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            "Subject : Maths",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 121, 120, 120)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 170, left: 10),
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Icon(Icons.attach_file),
-                                Text("Attachment.png"),
-                              ],
-                            ),
-                            style: OutlinedButton.styleFrom(
-                                shape: BeveledRectangleBorder(
-                                    borderRadius: BorderRadius.circular(2))),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  "Contrary to popular belief, Lorem Ipsum is not simply\nrandom text. It has roots in a piece of",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 121, 120, 120),
-                                  )),
-                              Text(
-                                "More",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: const Color.fromARGB(
-                                        255, 141, 138, 138)),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 20),
-              child: Row(
-                children: [
-                  Text(
-                    "Class: 4 A",
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 121, 120, 120)),
-                  ),
-                  SizedBox(width: 97),
-                  Text("Academic Year : 2020-2021",
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 121, 120, 120),
-                      ))
-                ],
-              ),
-            ),
-            Container(
-              height: 280,
-              child: Card(
-                elevation: 5,
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                child: Container(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 10),
-                        child: Text("New Testing"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Category Name",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 121, 120, 120)),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10, top: 20),
-                            child: Text("Deadline : "),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Text(
-                              "2021-04-10",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Subject : Maths",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 121, 120, 120)),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 180, left: 10),
-                        child: OutlinedButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Icon(Icons.attach_file),
-                              Text("Attachment.png"),
-                            ],
-                          ),
-                          style: OutlinedButton.styleFrom(
-                              shape: BeveledRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2))),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                            "Contrary to popular belief, Lorem Ipsum is not simply\nrandom text. It has roots in a piece of ",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 121, 120, 120),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "More",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: const Color.fromARGB(255, 141, 138, 138)),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                        ));
+                  }),
+            )
           ]),
         ));
   }
