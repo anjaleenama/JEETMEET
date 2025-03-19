@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
-const Exam = require("../model/examModel");
+const Exam = require("../model/examsModel");
 require("dotenv").config();
 
 const examController = {
