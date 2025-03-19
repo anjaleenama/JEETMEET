@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 
-const ExamSchema = new mongoose.Schema({
+const ExamsSchema = new mongoose.Schema({
   category: {
     type:String,
   },
@@ -30,6 +30,6 @@ subject:{
 },
 });
 
-const Exam = mongoose.model("Exam", ExamSchema);
+const Exam = mongoose.model("Exam", ExamsSchema);
 
 module.exports = Exam
