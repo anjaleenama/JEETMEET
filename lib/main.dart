@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(home:Schedule
-    (),debugShowCheckedModeBanner: false,);
+    return MaterialApp(
+      home: Assignment(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
