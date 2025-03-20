@@ -16,6 +16,8 @@ const IsAuth = (req, res, next) => {
         }
 
         req.user = decoded;
+        console.log("okay");
+        
         next();
     } catch (error) {
         return res.status(401).json({ success: false, message: "Authentication failed", error: error.message });
