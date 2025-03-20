@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
-const TimeTable = require('../models/timeTableModel');
+const TimeTable = require('../model/timeTableModel');
 
 const timeTableController = {
     

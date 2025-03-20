@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
-const MenuItem = require('../models/menuModel').MenuItem;
+const MenuItem = require('../model/menuModel').MenuItem;
 
 const menuController = {
     getMenu: asyncHandler(async (req, res) => {

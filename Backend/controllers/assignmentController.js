@@ -1,13 +1,13 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
-const Assignment = require('../models/assignmentModel');
+const Assignments = require('../model/assignmentModel');
 
 const assignmentController = {
 
     create: asyncHandler(async (req, res) => {
         const { className, academicYear, category, deadline, subject, description, attachment } = req.body;
 
-        const assignment = await Assignment.create({
+        const assignment = await Assignments.create({
             className,
             academicYear,
             category,

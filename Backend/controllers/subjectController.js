@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
-const Subject = require('../models/subjectModel');
+const Subject = require('../model/subjectModel');
 
 const subjectController  = {
   

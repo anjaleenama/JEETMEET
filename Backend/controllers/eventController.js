@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const Events = require('../models/eventModel');
+const Events = require('../model/eventModel');
 const mongoose = require('mongoose');
 
 

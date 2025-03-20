@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
-const Attendance = require('../models/attendanceModel');
+const Attendance = require('../model/attendanceModel');
 
 const attendanceController = {
     

@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
-const RequestBook = require('../models/requestBookModel');
+const RequestBook = require('../model/requestBookModel');
 
 const requestBookController = {
     
