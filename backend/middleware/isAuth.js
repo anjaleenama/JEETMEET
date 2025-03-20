@@ -1,24 +1,7 @@
-<<<<<<< HEAD
-const jwt=require("jsonwebtoken")
+import React from 'react'
+require('dotenv').config()
 
-const isAuth=((req,res,next)=>{
-        const {token}=req.cookies
-        if(!token){
-            res.send("no token found")
-        }
-        const decode=jwt.verify(token,process.env.SECRET_KEY)
-        if(!decode){
-            throw new Error("not match")
-        }
-        req.user=decode
-        next()
-})
-
-module.exports=isAuth
-=======
-const jwt =require("jsonwebtoken")
-require("dotenv").config()
-const auth=((req,res,next)=>{
+const IsAuth =((req,res,next)=> {
     const {token} =req.cookies
 
     if (!token) {
@@ -37,5 +20,5 @@ const auth=((req,res,next)=>{
     next()
 })
 
-module.exports = auth
->>>>>>> origin/lakshmi
+
+export default IsAuth

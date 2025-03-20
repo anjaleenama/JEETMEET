@@ -1,25 +1,23 @@
-const express =require('express');
-const connectdb = require('./db/connectdb');
-const  router = require('./router');
-const cors = require('cors')
-const app= express()
+const express = require("express");
+const connectdb = require("./db/connectdb");
+const cookieParser = require("cookie-parser");
+const router = require("./routers");
 
-const corsOptions ={
-    origin:"http://localhost:5173",
-    optionSucessStatus:200
-}
 
+
+const app = express()
+
+app.use(express.json())
+
+app.use(cookieParser())
 
 connectdb().catch((err)=>{
     console.log(err);
 })
-
-app.use(cors(corsOptions))
-app.use(express.json())
-
 app.use("/api/v1",router)
 
+
 app.listen(5000,()=>{
-    console.log("Server Running");
+    console.log("running");
     
 })
