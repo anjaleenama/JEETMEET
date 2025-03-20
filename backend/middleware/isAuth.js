@@ -1,24 +1,25 @@
-import React from 'react'
-require('dotenv').config()
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const IsAuth =((req,res,next)=> {
-    const {token} =req.cookies
+const IsAuth = (req, res, next) => {
+    try {
+        const { token } = req.cookies;
 
-    if (!token) {
-        throw new Error("Token not Found");
-        
+        if (!token) {
+            return res.status(401).json({ success: false, message: "Token not found" });
+        }
+
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+        if (!decoded) {
+            return res.status(401).json({ success: false, message: "Invalid token" });
+        }
+
+        req.user = decoded;
+        next();
+    } catch (error) {
+        return res.status(401).json({ success: false, message: "Authentication failed", error: error.message });
     }
-    
-    const decoded= jwt.verify(token,process.env.JWT_SECRET_KEY)
+};
 
-    if (!decoded) {
-        throw new Error("Invalid Token");
-        
-    }
-    req.user = decoded
-
-    next()
-})
-
-
-export default IsAuth
+module.exports = IsAuth;

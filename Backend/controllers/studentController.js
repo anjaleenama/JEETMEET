@@ -9,6 +9,7 @@ const Assignment = require("../model/assignmentSchema");
 const Teacher = require("../model/teacherSchema");
 const nodemailer = require("nodemailer");
 
+
 const studentController = {
     register: asyncHandler(async (req, res) => {
         const { 
@@ -107,7 +108,7 @@ const studentController = {
     dashBoard: asyncHandler(async (req, res) => {
         
     
-        const { id } = req.query;
+        const { id } = req.user;
     
         // Check if required fields are provided
         if (!id ) {
@@ -164,8 +165,18 @@ const studentController = {
             res.status(500).json({ message: "Failed to add notification", error: error.message });
         }
     }),
-     login : asyncHandler(async (req, res) => {
+    login : asyncHandler(async (req, res) => {
         const { username, password } = req.body;
+
+        
+        if (!process.env.SECRET_KEY) {
+            console.error("SECRET_KEY is not defined in the environment variables.");
+            return res.status(500).json({ message: "Internal server error" });
+        }else{
+            console.log(process.env.SECRET_KEY);
+        }
+
+
     
         // Check if username and password are provided
         if (!username || !password) {
@@ -190,18 +201,18 @@ const studentController = {
             id: UserDetails._id
         };
     
-        const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "1d" });
+        const token = jwt.sign(payload, process.env.SECRET_KEY);
     
         // Set the token in a cookie
         res.cookie("token", token, {
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000, // 1 day
+            httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+            maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+             // Ensures the cookie is only sent over HTTPS in production// Prevents the cookie from being sent with cross-site requests
         });
     
         // Send a success response
         res.status(200).json({ message: "Login successful", token });
     }),
-    
     profile:asyncHandler(async(req,res)=>{
         const {id}=req.user
         console.log(req.user);

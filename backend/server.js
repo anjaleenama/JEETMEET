@@ -23,14 +23,14 @@ mongoose
   .catch((err) => console.log("❌ MongoDB Connection Error:", err));
 
 // Routes
-app.use("/api/v1/event", require("./routers/eventRouter")); // Import event routes
-app.use("/api/v1/test", require ("./routers/assignmentRouter"));
-app.use("/api/v1/menu", require("./routers/menuRouter"))
-app.use("/api/v1/requestBook", require("./routers/requestBookRoutes"))
-app.use("/api/v1/attendance", require("./routers/attendanceRouter"))
-app.use("/api/v1/timetable", require("./routers/timeTableRouter"))
-app.use("/api/v1/subject", require("./routers/subjectRouter"))
+app.use("/api/v1/event", require("./router/eventRouter")); // Import event routes
+app.use("/api/v1/test", require ("./router/assignmentRouter"));
+app.use("/api/v1/menu", require("./router/menuRouter"))
+app.use("/api/v1/requestBook", require("./router/requestBookRoutes"))
+app.use("/api/v1/attendance", require("./router/attendanceRouter"))
+app.use("/api/v1/timetable", require("./router/timeTableRouter"))
+app.use("/api/v1/subject", require("./router/subjectRouter"))
 
 // Server Start
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
