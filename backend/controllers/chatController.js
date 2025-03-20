@@ -67,7 +67,16 @@ sendMessage : asyncHandler(async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-})
+}),
+
+getAllChats: asyncHandler(async (req, res) => {
+    try {
+        const chats = await Chat.find().sort({ createdAt: 1 }); // Fetch all messages, sorted by time
+        res.status(200).json(chats);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+       }
+    }),
 };
 
-module.exports = chatController
+module.exports = chatController;

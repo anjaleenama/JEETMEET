@@ -4,36 +4,44 @@ const examDetails = require("../model/examModel");
 
 
 const examDetailsDisplayController ={
-examDetails:asyncHandler(async (req,res) => {
-    const{date,startTime,endTime,examType,category,classDivision,subject,room,instructions } =req.body
-
-    if(!date || !startTime || !endTime || !examType || !category || !classDivision || !subject || !room || !instructions){
-
-        throw new Error(" Date, StartTime, EndTime, ExamType, Category, ClassDivision, Subject, Room, Instructions are required");
-        
-    }
-
-    console.log(date,endTime,startTime,examType,category,classDivision,subject,room,instructions);
-
-    const examdetails = await examDetails.create({
-        date,
-        startTime,
-        endTime,
-        examType,
-        category,
-        classDivision,
-        subject,
-        room,
-        instructions
-    })
-
-    if (!examdetails) {
-        return res.status(500).json({error: "Failed to insert exam details"})
-        
-    }
-
-    res.status(201).json({message:"Exam Details are successfully added to the Database"})
-}),
+    examDetails: asyncHandler(async (req, res) => {
+        const { date, startTime, endTime, examType, category, classDivision, subject, room, instructions } = req.body;
+    
+        // 💡 Improved validation for array
+        if (
+            !date || !startTime || !endTime || !examType || !category ||
+            !classDivision || !subject || !room || !Array.isArray(instructions) || !instructions.length
+        ) {
+            return res.status(400).json({ 
+                error: "Date, StartTime, EndTime, ExamType, Category, ClassDivision, Subject, Room, and Instructions (array) are required" 
+            });
+        }
+    
+        // 💡 Validate that instructions is an array of strings
+        if (!instructions.every(item => typeof item === "string")) {
+            return res.status(400).json({ error: "Instructions must be an array of strings" });
+        }
+    
+        console.log(date, endTime, startTime, examType, category, classDivision, subject, room, instructions);
+    
+        const examdetails = await examDetails.create({
+            date,
+            startTime,
+            endTime,
+            examType,
+            category,
+            classDivision,
+            subject,
+            room,
+            instructions
+        });
+    
+        if (!examdetails) {
+            return res.status(500).json({ error: "Failed to insert exam details" });
+        }
+    
+        res.status(201).json({ message: "Exam details successfully added to the database" });
+    }),
 
 showExamDetails: asyncHandler(async (req,res) => {
     const fetchedExamDetails = await examDetails.find()
