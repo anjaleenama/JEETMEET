@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jeet_meet/landingpage.dart';
 
 class MySplashScreen extends StatefulWidget {
-  
   const MySplashScreen({super.key});
 
   @override

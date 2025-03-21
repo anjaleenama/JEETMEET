@@ -19,7 +19,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 clipBehavior: Clip.none,
                 children: [
                   Container(
-                    height: 200,
+                    height: 150,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.red,
@@ -48,27 +48,43 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     ),
                   ),
                   Positioned(
-                    bottom: -100,
+                    bottom: -50,
                     left: MediaQuery.of(context).size.width / 2 - 50,
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.white,
-                      child: CircleAvatar(
-                          radius: 48,
-                          backgroundImage:
-                              AssetImage('assets/profileimage.png')),
+                    // child: CircleAvatar(
+                    //   radius: 40,
+                    //   backgroundColor: Colors.white,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Image.asset(
+                            'assets/profileimage.png',
+                            fit: BoxFit.fill,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                  //  ),
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 50),
               Text(
                 "Siobhan L. Seal",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               Text(
                 "Reg. No: 1245",
-                style: TextStyle(color: Colors.grey),
+                style:
+                    TextStyle(color: const Color.fromARGB(255, 112, 112, 112)),
               ),
               SizedBox(
                 height: 10,
