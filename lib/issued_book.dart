@@ -238,39 +238,29 @@ class BookCard extends StatelessWidget {
                   height: 20,
                 ),
                 Row(
-                  children: [
-                    Column(
-                     
-                      
-                      children: [
-                        Row(
-                        
-                          children: [
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
                             Column(
                               children: [
                                 Text("Rack No : "),
                                  Text("${book.rackNo}"),
                               ],
                             ),
-                            SizedBox(
-                              width: 270,
-                            ),
+                           
                            Icon(Icons.picture_as_pdf, color: Colors.red),
                           ],
                         ),
                       
                       ],
                     ),
-                  ],
+                  
                 ),
                 
-              ],
               
-            ),
             
           ),
-        ),
       ],
+      
     );
   }
 }

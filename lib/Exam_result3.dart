@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jeet_meet/Exam_result2.dart';
 
 
 void main(List<String> args) {
@@ -200,9 +199,7 @@ class ExamResult3 extends StatelessWidget {
                   backgroundColor: const Color.fromARGB(255, 23, 2, 75),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                 ),
-                onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ExamResultScreen1()));
-                },
+                onPressed: () {},
                child:Text("View",style:TextStyle(
                 color: Colors.white
                ),)),
