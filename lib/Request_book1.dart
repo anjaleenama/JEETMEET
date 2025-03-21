@@ -225,12 +225,7 @@ class BookCard extends StatelessWidget {
                   height: 20,
                 ),
                 Row(
-                  children: [
-                    Column(
-                     
-                      
-                      children: [
-                        Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           
                           children: [
                             Column(
@@ -250,7 +245,7 @@ class BookCard extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              width: 140,
+                              width: 40,
                             ),
                            Icon(Icons.picture_as_pdf, color: Colors.red),
                           ],
@@ -263,7 +258,7 @@ class BookCard extends StatelessWidget {
                       
                     ),
                     
-                  ],
+          ),
                 
                 ),
                 SizedBox(
@@ -275,37 +270,45 @@ class BookCard extends StatelessWidget {
       indent: 10, 
       endIndent: 10, 
     ),
-                Row(
-                  children: [
-                    Text("Less details "),
-                    Icon(Icons.keyboard_arrow_up_outlined),
-                    SizedBox(
-                      width: 180,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                      
+                        children: [
+                          Row(
+                            children: [
+                              Text("Less details "),
+                                Icon(Icons.keyboard_arrow_up_outlined),
+                            ],
+                          ),
+                         
+                          
+                        ],),
+                           SizedBox(
+                            width: 120
+                           ),
+                            ElevatedButton(
+                    onPressed: () {}, 
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 1, 4, 54), 
+                      foregroundColor: Colors.white, 
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 15),
                     ),
-                   ElevatedButton(
-  onPressed: () {}, 
-  style: ElevatedButton.styleFrom(
-    backgroundColor: const Color.fromARGB(255, 1, 4, 54), 
-    foregroundColor: Colors.white, 
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(5),
-    ),
-    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 15),
-  ),
-  child: Text("Request", style: TextStyle(fontSize: 13)),
-)
-
+                    child: Text("Request", style: TextStyle(fontSize: 13)),
+                  )
+                    ],  
+                      ),
+                ),
                   ],
-                )
-              ],
-              
-            ),
-            
-          ),
-        ),
-      ],
-      
-    );
+                  
+                    );
+                
   }
 }
 

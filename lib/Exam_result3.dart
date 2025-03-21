@@ -79,7 +79,7 @@ class ExamResult3 extends StatelessWidget {
     foregroundColor: Colors.black,
     elevation: 2,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(5), // Adjust this value to decrease the radius
+      borderRadius: BorderRadius.circular(5), 
     ),
   ),
   onPressed: () {},

@@ -176,12 +176,16 @@ class Schedule extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    
                     Text("Date : 17-Mar-2020",
                     style: TextStyle(
                       color: Colors.grey
                     ),),
-                    SizedBox(width:110),
+                   SizedBox(
+                    width: 30,
+                   ),
                     Text("09.30 AM - 04.30 PM",
                      style: TextStyle(
                       color: Colors.grey

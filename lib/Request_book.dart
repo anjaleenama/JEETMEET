@@ -236,6 +236,7 @@ class _BookCardState extends State<BookCard> {
                   endIndent: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "More details ",
@@ -243,7 +244,7 @@ class _BookCardState extends State<BookCard> {
                     ),
                     Icon(Icons.keyboard_arrow_down_outlined),
                     SizedBox(
-                      width: 170
+                      width: 30
                     ),
                     ElevatedButton(
                       onPressed: () {
