@@ -7,7 +7,8 @@ const bookRouter = require('./bookRouter');
 const chatRouter = require('./chatRouter');
 const userRouter = require('./userRouter');
 const examRouter = require('./examRouter');
-const leaveRouter = require('./leaverouter');
+const leaveRouter = require("./leaverouter");
+
 const studentRouter = require("./studentRouter");
 const subjectRouter = require("./subjectRouter");
 const menuRouter = require("./menuRouter");
@@ -16,6 +17,7 @@ const attendanceRouter = require("./attendanceRouter");
 const timeTableRouter = require("./timeTableRouter");
 const assignmentRouter = require("./assignmentRouter");
 const eventRouter = require("./eventRouter");
+
 
 
 const router =express()
