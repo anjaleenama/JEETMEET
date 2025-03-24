@@ -2,7 +2,7 @@ const express = require("express")
 const questionRouter = require("./questionRouter")
 const examDetailsDisplayRouter = require("./examDetailsDisplayRouter")
 
-const eventRouter = require("./eventRouter");
+
 const bookRouter = require('./bookRouter');
 const chatRouter = require('./chatRouter');
 const userRouter = require('./userRouter');
@@ -15,6 +15,7 @@ const requestBookRoutes = require("./requestBookRoutes");
 const attendanceRouter = require("./attendanceRouter");
 const timeTableRouter = require("./timeTableRouter");
 const assignmentRouter = require("./assignmentRouter");
+const eventRouter = require("./eventRouter");
 
 
 const router =express()
@@ -34,19 +35,12 @@ router.use("/user",userRouter)
 
 
 router.use("/student",studentRouter)
-
 router.use("/test",assignmentRouter)
-
 router.use("/subject",subjectRouter)
-
 router.use('/event',eventRouter)
-
 router.use('/menu',menuRouter)
-
 router.use('/requestBook',requestBookRoutes)
-
 router.use('/attendance',attendanceRouter)
-
 router.use('/timetable',timeTableRouter)
 
 
