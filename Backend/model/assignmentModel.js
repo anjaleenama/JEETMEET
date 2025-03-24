@@ -34,3 +34,5 @@ const Assignments = mongoose.model('Assignments', assignmentSchema);
 
 // module.exports = Assignments;/
 module.exports =Assignments
+console.log("hellooo");
+
