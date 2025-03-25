@@ -11,7 +11,7 @@ const examRouter = require('./examRouter');
 
  
 
-const assignmentRouter = require("./assignmentRouter");
+
 const eventRouter = require("./eventRouter");
 const leaveRouter = require("./leaverouter");
 const studentRouter = require("./studentRouter");
@@ -20,6 +20,7 @@ const menuRouter = require("./menuRouter");
 const requestBookRoutes = require("./requestBookRoutes");
 const attendanceRouter = require("./attendanceRouter");
 const timeTableRouter = require("./timeTableRouter");
+const assignmentRouter = require("./assignmentRouter");
 
 
 
