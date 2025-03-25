@@ -27,8 +27,9 @@ const eventRouter = require("./eventRouter");
 
 const router =express()
 
-
-
+                        console.log("hello");
+                        
+     
 router.use("/student",studentRouter)
 
 router.use("/exam",examDetailsDisplayRouter)
