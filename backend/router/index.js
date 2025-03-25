@@ -11,8 +11,7 @@ const examRouter = require('./examRouter');
 
  
 
-
-const leaveRouter = require("./leaverouter");
+const leaveRouter=require("./leaveRouter")
 const studentRouter = require("./studentRouter");
 const subjectRouter = require("./subjectRouter");
 const menuRouter = require("./menuRouter");
@@ -36,7 +35,7 @@ router.use("/exam",examDetailsDisplayRouter)
 router.use("/question",questionRouter)
 router.use("/book",bookRouter)
 router.use("/exam",examRouter)
-router.use("/leave",leaveRouter)
+router.use("leave",leaveRouter)
 router.use("/chat",chatRouter)
 router.use("/user",userRouter)
 
