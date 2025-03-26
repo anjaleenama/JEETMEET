@@ -27,7 +27,7 @@ const studentRouter = require("./studentRouter");
 
 const router =express()
 
-console.log("hello");
+
                         
      
 router.use("/student",studentRouter)
@@ -36,7 +36,7 @@ router.use("/exam",examDetailsDisplayRouter)
 router.use("/question",questionRouter)
 router.use("/book",bookRouter)
 router.use("/exam",examRouter)
-router.use("leave",leaveRouter)
+router.use("/leave",leaveRouter)
 router.use("/chat",chatRouter)
 router.use("/user",userRouter)
 
