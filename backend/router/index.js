@@ -12,7 +12,6 @@ const examRouter = require('./examRouter');
  
 
 const leaveRouter=require("./leaveRouter")
-const studentRouter = require("./studentRouter");
 const subjectRouter = require("./subjectRouter");
 const menuRouter = require("./menuRouter");
 const requestBookRoutes = require("./requestBookRoutes");
@@ -20,6 +19,7 @@ const attendanceRouter = require("./attendanceRouter");
 const timeTableRouter = require("./timeTableRouter");
 const assignmentRouter = require("./assignmentRouter");
 const eventRouter = require("./eventRouter");
+const studentRouter = require("./studentRouter");
 
 
 
@@ -27,7 +27,7 @@ const eventRouter = require("./eventRouter");
 
 const router =express()
 
-                        console.log("hello");
+console.log("hello");
                         
      
 router.use("/student",studentRouter)
