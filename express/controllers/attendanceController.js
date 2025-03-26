@@ -4,7 +4,7 @@ const Attendance = require('../model/attendanceModel');
 
 const attendanceController = {
     
-    // Mark attendance for a student
+    
     markAttendance: asyncHandler(async (req, res) => {
         const { studentId, date, status } = req.body;
 
