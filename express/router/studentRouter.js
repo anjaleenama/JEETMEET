@@ -1,6 +1,6 @@
 const express=require("express")
 const studentController = require("../controllers/studentController")
-const isAuth = require("../middleware/isAuth")
+const isAuth = require("../middleware/IsAuth")
 const studentRouter=express.Router()
 
 studentRouter.post('/register',studentController.register)
