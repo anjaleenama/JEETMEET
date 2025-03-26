@@ -418,7 +418,7 @@ const studentController = {
             }
     
             // Construct Reset URL for Frontend (Include email as a query parameter)
-            const resetUrl = `http://localhost:5173/reset-password?token=${resetToken}&email=${email}`;
+            const resetUrl = `https://jeetmeet-nepv.onrender.com/reset-password?token=${resetToken}&email=${email}`;
             console.log(`🔗 Reset URL: ${resetUrl}`);
     
             // Configure Nodemailer Transporter
