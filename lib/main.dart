@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:jeet_meet/drawyer.dart';
 import 'package:jeet_meet/loginpage.dart';
-import 'package:jeet_meet/profile.dart';
-import 'package:jeet_meet/profile_1.dart';
+import 'package:jeet_meet/timetable.dart';
 
 void main() {
   runApp(const MyApp());
