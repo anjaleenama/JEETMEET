@@ -33,7 +33,7 @@ const studentController = {
             register_number,
             username,
             gender,
-            phone // Add phone field here
+            phone 
         } = req.body;
     
         // Check if all required fields are provided, including username, gender, and phone

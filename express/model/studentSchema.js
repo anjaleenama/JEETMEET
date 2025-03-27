@@ -4,12 +4,15 @@ const StudentSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     name: { type: String, required: true },
+    
     profile_image: { type: String, default: null },
     classes: { type: String, required: true },
     division: { type: String, required: true },
     roll_number: { type: Number, required: true },
-    register_number: { type: String, required: true, unique: true }, // Added register number
+    register_number: { type: String, required: true, unique: true },
     dob: { type: Date, required: true },
+    gender: { type: String, required: true },  // Added gender
+    phone_number: { type: String, required: true }, // Added phone number
     parent_id: { type: mongoose.Schema.Types.ObjectId, ref: "Parent", required: true }, 
     secondary_phone: { type: String, default: null }, 
     address: { type: String, default: null },       
