@@ -15,6 +15,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
     },
   );
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
