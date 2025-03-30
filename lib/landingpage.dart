@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/loginpage.dart';
 
 class MyLandingPage extends StatefulWidget {
   const MyLandingPage({super.key});
@@ -26,7 +27,10 @@ class _MyLandingPageState extends State<MyLandingPage> {
           width: double.infinity,
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyLoginPage()));
+          },
           child: Text(
             "Student",
             style: TextStyle(color: Colors.white, fontSize: 20),

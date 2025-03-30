@@ -12,36 +12,38 @@ class MyLoginPage extends StatefulWidget {
 class _MyLoginPageState extends State<MyLoginPage> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-  var _dio;
-  var _responds = "";
+  // Dio _dio = Dio();
+  // var _responds = "";
 
-  Future<void> Login() async {
-    try {
-      FormData formData = FormData.fromMap({
-        "username": username.text,
-        "password": password.text,
-      });
-      final response = await _dio.post(
-          'https://jeetmeet-nepv.onrender.com/api/v1/student/login',
-          data: formData);
+  // Future<void> Login() async {
+  //   print("hai ghjklghjk=============================== ");
+  //   try {
+  //     FormData formData = FormData.fromMap({
+  //       "username": username.text,
+  //       "password": password.text,
+  //     });
+  //     final response = await _dio.post(
+  //         'https://jeetmeet.b4production.com/api/student/login',
+  //         data: formData);
+  //     print("${response.data}");
+  //     setState(() {
+  //       _responds = "Responds:${response.data}";
 
-      setState(() {
-        _responds = "Responds:${response.data}";
-
-        print("${response.data}");
-        if (response.statusCode == 200) {
-          if (response.data['status'] == "success") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => myprofileone()));
-          }
-        }
-      });
-    } catch (e) {
-      setState(() {
-        _responds = "error:$e";
-      });
-    }
-  }
+  //       print("${response.data}");
+  //       if (response.statusCode == 200) {
+  //         if (response.data['status'] == "success") {
+  //           Navigator.push(context,
+  //               MaterialPageRoute(builder: (context) => myprofileone()));
+  //         }
+  //       }
+  //     });
+  //   } catch (e) {
+  //     setState(() {
+  //       print(e);
+  //       _responds = "error:$e";
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +91,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => myprofileone()));
-              Login();
+              // Login();
             },
             child: Text(
               "Login",

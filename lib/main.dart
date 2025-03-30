@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jeet_meet/complted.dart';
+import 'package:jeet_meet/landingpage.dart';
 
-import 'package:jeet_meet/drawyer.dart';
 import 'package:jeet_meet/loginpage.dart';
-import 'package:jeet_meet/timetable.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyLoginPage(),
+      home: MyLandingPage(),
       debugShowCheckedModeBanner: false,
     );
   }

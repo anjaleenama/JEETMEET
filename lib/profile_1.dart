@@ -1,20 +1,53 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class myprofileone extends StatelessWidget {
+class myprofileone extends StatefulWidget {
+  myprofileone({super.key});
+
+  @override
+  State<myprofileone> createState() => _myprofileoneState();
+}
+
+class _myprofileoneState extends State<myprofileone> {
   var head = [
     "Programming Contest",
     "Annual Sports Day",
     "Annual Sports Day",
     "Second Semester Exam",
   ];
+
   var subhead = [
     "On 20-11-2018 will held a programming \n contest on the ",
     "	In your school campus on 1-03-2018 wil.. ",
     "	In your school campus on 1-03-2018 wil.. ",
     "Your second semester exam will held\n on 30-08-2018.Pl.. "
   ];
-  myprofileone({super.key});
+
+  Dio _dio = Dio();
+
+  // String apiUrl = 'https://fakestoreapi.com/products';
+  var _res = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getDataApi();
+  }
+
+  void getDataApi() async {
+    try {
+      Response response = await _dio
+          .get('https://jeetmeet-nepv.onrender.com/api/v1/student/dashboard');
+      if (response.statusCode == 200) {
+        setState(() {
+          _res = response.data;
+        });
+      }
+    } catch (e) {
+      print("error$e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +116,8 @@ class myprofileone extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            const SizedBox(height: 50),
-                            const Text(
+                            SizedBox(height: 50),
+                            Text(
                               "Siobhan L. Seal",
                               style: TextStyle(
                                 fontSize: 18,
